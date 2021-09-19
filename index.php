@@ -7,9 +7,6 @@
     die("Connection failed: " . mysqli_connect_error());
   }
 
-  $file = './users.txt';
-  $lines = file($file);
-
   if (!isset($_SESSION["is_logged_in"])) {
     header("location: login.php");
     exit();
@@ -303,5 +300,3 @@ WHERE orders.OrderDate >= '1995-05-01'
 <?php mysqli_close($conn) ?>
 </body>
 </html>
-
-<script src="js/script.js"></script>
