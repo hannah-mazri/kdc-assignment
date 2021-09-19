@@ -3,7 +3,7 @@
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
+  - [The assignments](#the-assignments)
   - [Screenshots](#screenshot)
 - [My process](#my-process)
   - [Built with](#built-with)
