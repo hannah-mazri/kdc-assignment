@@ -1,13 +1,11 @@
 <?php
-  include_once 'header.php';
-
   function get_users()
   {
     $file = fopen('users.txt', 'r');
     $users = array();
     while (!feof($file)) {
       $content = fgets($file);
-      $carray = explode(" | ", $content);
+      $carray = explode("|", $content);
       list($username, $password) = $carray;
       array_push($users, $carray);
     }
@@ -21,7 +19,12 @@
     $result = false;
 
     foreach ($users as $user) {
-      $result = ($user[0] == $username && $user[1] == $password);
+      if ((trim($user[0]) == $username) && (trim($user[1]) == $password)) {
+        $result = true;
+        break;
+      } else {
+        $result = false;
+      }
     }
     return $result;
   }
@@ -50,21 +53,56 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if (empty($username)) {
-      header("location: login.php?error=Username is required");
+    if (empty($username) && empty($password)) {
+      header("location: login.php?error=empty_inputs");
+      exit();
+    } elseif (empty($username)) {
+      header("location: login.php?error=required_username");
       exit();
     } elseif (empty($password)) {
-      header("location: login.php?error=Password is required");
+      header("location: login.php?error=required_password");
       exit();
     } else {
       login($username, $password);
     }
   }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiddocare Assignment</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrapper body-wrapper">
   <div class="signup-form-container">
     <h2 class="font-bold text-3xl">Log In</h2>
     <?php if (isset($_GET["error"])) { ?>
-      <p class="error"><?php echo $_GET["error"]; ?></p>
+      <?php
+      if (isset($_GET["error"])) {
+        if ($_GET["error"] == "empty_inputs") {
+          echo "<p class='error'>Fill in all fields!</p>";
+        }
+        if ($_GET["error"] == "required_username") {
+          echo "<p class='error'>Username is required</p>";
+        }
+        if ($_GET["error"] == "required_password") {
+          echo "<p class='error'>Password is required</p>";
+        }
+        if ($_GET["error"] == "invalid_credentials") {
+          echo "<p class='error'>Incorrect login information!</p>";
+        }
+      }
+      ?>
     <?php } ?>
     <div class="signup-form">
       <form method="post">
@@ -80,17 +118,10 @@
       </form>
     </div>
 
-    <?php
-      if (isset($_GET["error"])) {
-        if ($_GET["error"] == "empty_input") {
-          echo "<p>Fill in all fields!</p>";
-        }
-        if ($_GET["error"] == "invalid_credentials") {
-          echo "<p>Incorrect login information!</p>";
-        }
-      }
-    ?>
+
   </div>
+</div>
+</body>
+</html>
 
-
-<?php include_once 'footer.php' ?>
+<script src="js/script.js"></script>
