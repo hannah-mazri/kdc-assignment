@@ -38,3 +38,4 @@ Users should be able to:
 - PHP
 - HTML
 - Vanilla CSS
+- Google Charts
