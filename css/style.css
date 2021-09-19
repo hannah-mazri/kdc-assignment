@@ -3,11 +3,15 @@ body {
   font-weight: 500;
   min-height: 100vh;
   background-color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 nav {
   width: 100%;
-  height: 80px;
+  height: 90px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -15,10 +19,14 @@ nav {
 
 .wrapper {
   padding: 32px;
+}
+
+.wrapper.header-wrapper {
   flex: 1;
 }
 
 .wrapper.body-wrapper {
+  margin: 16px 0 0;
   display: flex;
   flex-direction: column;
 }
@@ -33,7 +41,8 @@ a {
 }
 
 .nav-link {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  color: darkblue;
 }
 
 .nav-link:hover {
@@ -46,6 +55,10 @@ a {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.text-lg {
+  font-size: 1.125rem;
 }
 
 .text-xl {
@@ -67,7 +80,7 @@ a {
   margin: 0 auto;
   padding: 40px;
   width: 420px;
-  height: 360px;
+  height: 400px;
   background-color: #fff;
   border-radius: 8px;
 }
@@ -111,12 +124,14 @@ button[type=submit]:hover {
 
 .total-container {
   display: flex;
-  width: 50%;
+  width: 60%;
+  height: 200px;
   column-gap: 24px;
 }
 
 .total-value {
-  margin-top: 8px;
+  margin-top: 16px;
+  font-size: 1.25rem;
 }
 
 .card-container {
@@ -136,15 +151,33 @@ button[type=submit]:hover {
 
 .card.card-half {
   width: 50%;
+  padding: 32px;
 }
 
 .card.card-full {
+  min-width: 1200px;
   width: 100%;
-  height: 340px;
+  height: 480px;
+}
+
+.card.card-full #daily_sales {
+  margin: auto;
 }
 
 .card.card-square {
-  width: 340px;
-  height: 340px;
+  width: 380px;
+  height: 380px;
 }
 
+.error {
+  margin: 12px 0;
+  padding: 24px;
+  color: red;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.subtitle {
+  margin-top: 8px;
+}
